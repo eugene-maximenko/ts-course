@@ -1,54 +1,38 @@
-// const userName = 'Max'
-// // userName = 'Maximillian'
-// let age = 30
+class Department {
+    name: string
+    private employees: string[] = []
+    constructor(n: string) {
+        this.name = n
+    }
 
-// age = 29
-// var result
+    describe(this: Department) {
+        console.log('Department: ' + this.name)
+    }
 
-// function add(a: number, b: number) {
-//     result = a + b
-//     return result 
-// }
+    addEmployee(employee: string) {
+        this.employees.push(employee)
+    }
 
-// console.log(result);
-
-// const add = (a: number, b: number = 1) => a + b
-
-// const printOutput: (a: number | string) => void = output => console.log(output)
-
-// const button = document.querySelector('button')
-
-// if (button) {
-//     button.addEventListener('click', event => console.log(event))
-// }
-
-// printOutput(add(5))
-
-const hobbies = ['Sports', 'Cooking', '2', '3']
-const activeHobbies = ['Hiking']
-
-activeHobbies.push(...activeHobbies)
-
-const person = {
-    firstName: 'Max',
-    age: 30
+    printEmployeeInformation() {
+        console.log(this.employees.length);
+        console.log(this.employees)
+    }
 }
 
-const copiedPerson = { ...person }
+const accounting = new Department('Accounting')
 
-const add = (...numbers: [number, number, number]) => {
-    return numbers.reduce((curResult, curValue) => {
-        return curResult + curValue
-    }, 0)
-}
+accounting.addEmployee('Max')
+accounting.addEmployee('Manu')
+// accounting.employees[2] = 'Anna'
 
-const addNumbers = add(5, 2, 3)
-console.log(addNumbers)
+accounting.describe()
+accounting.printEmployeeInformation()
 
-const [hobby1, hobby2, ...rest] = hobbies
+// const accountingCopy = {
+//     name: 'another',
+//     describe: accounting.describe,
+// }
 
-console.log(hobbies, hobby1, hobby2, rest)
+// accountingCopy.describe()
 
-const { firstName: userName, age } = person
-
-console.log(userName)
+// console.log(accountingCopy.describe)
