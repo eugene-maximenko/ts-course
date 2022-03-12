@@ -1,64 +1,100 @@
-abstract class FoodProvider {
-    constructor(public food: string) { }
+const graph: Map<string, null | Map<string, number | null>> = new Map()
 
-    getFood() {
-        return this.food
+graph.set(
+    'Beginning',
+    new Map(
+        [
+            ['A', 6],
+            ['B', 2],
+        ]
+    )
+)
+
+graph.set(
+    'A',
+    new Map(
+        [
+            ['End', 1],
+        ]
+    )
+)
+
+graph.set(
+    'B',
+    new Map(
+        [
+            ['A', 3],
+            ['End', 5],
+        ]
+    )
+)
+
+graph.set(
+    'End',
+    new Map()
+)
+
+const costs: Map<string, number> = new Map([
+    ['A', 6],
+    ['B', 2],
+    ['End', Infinity]
+])
+
+const parents: Map<string, string | null> = new Map([
+    ['A', 'Beginning'],
+    ['B', 'Beginning'],
+    ['End', null]
+])
+
+const processed: string[] = []
+// console.log(graph.get);
+// console.log(costs);
+// console.log(parents);
+
+
+
+
+
+
+
+
+
+
+
+
+const findLowestCostNode = (nodeName: string) => {
+    let min = Infinity
+    let minimalNodeName = 'Init value'
+    const entries = graph.get(nodeName)!.entries();
+
+    for (const [key, value] of entries) {
+
+        if (value! <= min) {
+            min = value!
+            minimalNodeName = key
+        }
+    }
+
+    console.log(`With nodeName ${nodeName} as input, min is: ${min}. MinimalNodeName is: ${minimalNodeName}`);
+    return minimalNodeName
+}
+
+const minimalNodeName: string = findLowestCostNode('Beginning')
+
+const cost = costs.get(minimalNodeName)!
+const neighbors = graph.get(minimalNodeName)
+
+for (const key of neighbors?.keys()!) {
+    let newCost = cost + neighbors?.get(key)!
+    if (costs.get(key)! > newCost) {
+        costs.set(key, newCost)
+        parents.set(key, minimalNodeName)
     }
 }
 
-interface IFoodProvider {
-    food: string
+processed.push(minimalNodeName)
+minimalNodeName = findLowestCostNode
 
-    getFood(): string
-}
-
-class Wife extends FoodProvider implements IFoodProvider { }
-
-class Restaurant extends FoodProvider implements IFoodProvider { }
-
-interface IMale {
-    eat(): string
-}
-
-class LowRankingMale implements IMale {
-    eat(this: LowRankingMale) {
-        const wife = new Wife('Sandwich')
-        const food = wife.getFood()
-
-        return food
-    }
-}
-
-class AverageRankingMale implements IMale {
-    // private wife: Wife
-
-    // constructor(wife: Wife) {
-    //     this.wife = wife
-    // }
-
-    constructor(public wife: Wife) { }
-
-    eat(this: AverageRankingMale) {
-        return this.wife.getFood()
-    }
-}
-
-class HighRankingMale implements IMale {
-    private foodProvider: IFoodProvider
-
-    constructor(foodProvider: IFoodProvider) {
-        this.foodProvider = foodProvider
-    }
-
-    eat(this: HighRankingMale) {
-        const food = this.foodProvider.getFood()
-        return food
-    }
-}
-
-class Fake {
-
-}
-
-new HighRankingMale(new Wife('Sandwich')).eat()
-new HighRankingMale(new Restaurant('Steak')).eat()
+// do {
+//     let node = 
+// } while (node !== null) { }
