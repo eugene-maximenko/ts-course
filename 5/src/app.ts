@@ -15,7 +15,7 @@ type ElevatedEmployee = Admin & Employee;
 const e1: ElevatedEmployee = {
   name: 'Max',
   privileges: ['create-server'],
-  startDate: new Date()
+  startDate: new Date(),
 };
 
 type Combinable = string | number;
@@ -99,7 +99,7 @@ function moveAnimal(animal: Animal) {
   console.log('Moving at speed: ' + speed);
 }
 
-moveAnimal({type: 'bird', flyingSpeed: 10});
+moveAnimal({ type: 'bird', flyingSpeed: 10 });
 
 // const userInputElement = <HTMLInputElement>document.getElementById('user-input')!;
 const userInputElement = document.getElementById('user-input');
@@ -107,3 +107,15 @@ const userInputElement = document.getElementById('user-input');
 if (userInputElement) {
   (userInputElement as HTMLInputElement).value = 'Hi there!';
 }
+
+interface ErrorContainer {
+  // every property which is added must have a property name,
+  // which can be interpreted as a string and the value for that property
+  // also must be a string
+  [prop: string]: string;
+}
+
+const errorBag: ErrorContainer = {
+  email: 'Not a valid email',
+  username: 'Must start with a capital character!',
+};
