@@ -22,7 +22,7 @@ const mergedObj = merge<
   },
   { age: number }
 >(
-  { name: "Max", hobbies: ["Sports"] },
+  { name: 'Max', hobbies: ['Sports'] },
   { age: 30 }
 );
 
