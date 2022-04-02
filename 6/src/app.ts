@@ -11,19 +11,9 @@
 //   // data.split(' ');
 // });
 
-function merge<T, U>(objA: T, objB: U) {
+function merge<T extends object, U extends object>(objA: T, objB: U) {
   return Object.assign(objA, objB);
 }
 
-const mergedObj = merge<
-  {
-    name: string;
-    hobbies: string[];
-  },
-  { age: number }
->(
-  { name: 'Max', hobbies: ['Sports'] },
-  { age: 30 }
-);
-
-mergedObj.name;
+const mergedObj = merge({ name: 'Max', hobbies: ['Sports'] }, { age: 30 });
+console.log(mergedObj);
