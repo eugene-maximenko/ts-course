@@ -10,16 +10,24 @@ function Logger(logString: string) {
 function WithTemplate(template: string, hookId: string) {
   console.log('TEMPLATE  FACTORY');
 
-  return function (constructor: any) {
-    console.log('Rendering template');
+  return function <T extends { new (...args: any[]): { name: string } }>(
+    originalConstructor: T
+  ) {
+    // return new constrcutor which will replace the old one
+    return class extends originalConstructor {
+      constructor(..._: any[]) {
+        super();
 
-    const hookEl = document.getElementById(hookId);
-    const person = new constructor();
+        console.log('Rendering template');
 
-    if (hookEl) {
-      hookEl.innerHTML = template;
-      hookEl.querySelector('h1')!.textContent = person.name;
-    }
+        const hookEl = document.getElementById(hookId);
+
+        if (hookEl) {
+          hookEl.innerHTML = template;
+          hookEl.querySelector('h1')!.textContent = this.name;
+        }
+      }
+    };
   };
 }
 
@@ -34,9 +42,9 @@ class Person {
   }
 }
 
-const person = new Person();
+// const person = new Person();
 
-console.log(person);
+// console.log(person);
 
 function Log(target: any, propertyName: string | Symbol) {
   console.log('Property decorator!');
