@@ -7,9 +7,15 @@
         {
             "type": "node",
             "request": "launch",
-            "name": "Launch test",
-            // "runtimeVersion": "14",
-            "program": "${workspaceFolder}/src/arrayRotation.js"
+            "name": "Launch Program",
+            "skipFiles": [
+                "<node_internals>/**"
+            ],
+            "program": "${workspaceFolder}/src/index.ts",
+            "preLaunchTask": "tsc: build - tsconfig.json",
+            "outFiles": [
+                "${workspaceFolder}/**/*.js"
+            ]
         }
     ]
 }
