@@ -1,13 +1,17 @@
 "use strict";
-let users = [
-    {
-        name: 'John Smith',
-        age: 30,
-        occupation: 'Software egnineer'
-    },
-    {
-        name: 'Kate Muller',
-        age: 28
+class Account {
+    constructor(id, owner, balance) {
+        this.id = id;
+        this.owner = owner;
+        this.balance = balance;
     }
-];
+    deposit(amount) {
+        if (amount <= 0)
+            throw new Error('Invalid amount');
+        this.balance += amount;
+    }
+}
+let account = new Account(1, 'Mosh', 0);
+account.deposit(100);
+console.log(account instanceof Account);
 //# sourceMappingURL=index.js.map
