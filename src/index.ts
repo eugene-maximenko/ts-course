@@ -1,7 +1,17 @@
-function calculateTax(income: number, taxYear: number = 2022): number {
-    if (taxYear < 2022)
-        return income * 1.2
-    return income * 1.3
+type User = {
+    name: string
+    age: number
+    occupation?: string
 }
 
-calculateTax(10_000, 2023)
+let users: User[] = [
+    {
+        name: 'John Smith',
+        age: 30,
+        occupation: 'Software egnineer'
+    },
+    {
+        name: 'Kate Muller',
+        age: 28
+    }
+]

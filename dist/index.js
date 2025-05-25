@@ -1,10 +1,13 @@
 "use strict";
-var Size;
-(function (Size) {
-    Size[Size["Small"] = 1] = "Small";
-    Size[Size["Medium"] = 2] = "Medium";
-    Size[Size["Large"] = 3] = "Large";
-})(Size || (Size = {}));
-let mySize = Size.Medium;
-console.log(mySize);
+let users = [
+    {
+        name: 'John Smith',
+        age: 30,
+        occupation: 'Software egnineer'
+    },
+    {
+        name: 'Kate Muller',
+        age: 28
+    }
+];
 //# sourceMappingURL=index.js.map
