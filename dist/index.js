@@ -5,16 +5,16 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
-function Component(constructor) {
-    console.log('Component decorator called');
-    constructor.prototype.uniqueId = Date.now();
-    constructor.prototype.insertInDOM = () => {
-        console.log('Inserting the component in the DOM');
+function Sauce(name) {
+    return (constructor) => {
+        constructor.prototype.sauce = name;
     };
 }
-let ProfileComponent = class ProfileComponent {
+let Pizza = class Pizza {
 };
-ProfileComponent = __decorate([
-    Component
-], ProfileComponent);
+Pizza = __decorate([
+    Sauce('pesto')
+], Pizza);
+const margarita = new Pizza();
+console.log(margarita);
 //# sourceMappingURL=index.js.map
